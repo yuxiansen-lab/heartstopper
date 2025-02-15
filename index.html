@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanwork Collection</title>
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --bg-color: #f5f5f5;
+            --text-color: #333;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --shadow: 0 2px 5px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #f5f5f5;
+            --card-bg: rgba(45, 45, 45, 0.9);
+            --nav-bg: rgba(45, 45, 45, 0.8);
+            --shadow: 0 2px 5px rgba(255,255,255,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+            transition: var(--transition);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 导航栏 */
+        nav {
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: var(--shadow);
+        }
+
+        /* 头部图片 */
+        .header-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* 悬浮控制按钮 */
+        .float-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .float-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: var(--card-bg);
+            color: var(--text-color);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* 语言菜单 */
+        .lang-menu {
+            position: relative;
+        }
+
+        .lang-options {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: none;
+            flex-direction: column;
+            min-width: 120px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        .lang-options.show {
+            display: flex;
+        }
+
+        .lang-option {
+            padding: 8px;
+            border: none;
+            background: none;
+            color: var(--text-color);
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .lang-option:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .header-image {
+                height: 300px;
+            }
+
+            .float-controls {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .float-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container">
+            <h1 data-translate="nav_title">Fanwork Submission</h1>
+        </div>
+    </nav>
+
+    <!-- 头部图片 -->
+    <img src="https://source.unsplash.com/random/1600x900?fantasy" 
+         alt="Header image" 
+         class="header-image">
+
+    <!-- 主要内容 -->
+    <main class="container">
+        <section class="card">
+            <h2>📚 <span data-translate="theme_title">Theme</span></h2>
+            <p data-translate="theme_content">Theme: Fantasy World Adventure</p>
+            <p data-translate="theme_format">Formats: Novel/Illustration/Manga/Short Story</p>
+            <p data-translate="theme_deadline">Deadline: December 31, 2023</p>
+        </section>
+
+        <section class="card">
+            <h2>📝 <span data-translate="guidelines_title">Guidelines</span></h2>
+            <ul>
+                <li data-translate="guideline1">Original unpublished works only</li>
+                <li data-translate="guideline2">Content must comply with laws and regulations</li>
+                <li data-translate="guideline3">Suggested word count: 5,000-20,000 words</li>
+                <li data-translate="guideline4">Image resolution ≥300dpi</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>📮 <span data-translate="contact_title">Contact</span></h2>
+            <p data-translate="contact_text">Submission email: 
+                <a href="mailto:submissions@fanart.world" 
+                   style="color: var(--secondary-color); text-decoration: none; border-bottom: 2px dotted;">
+                    submissions@fanart.world
+                </a>
+            </p>
+        </section>
+    </main>
+
+    <!-- 悬浮控制按钮 -->
+    <div class="float-controls">
+        <div class="lang-menu">
+            <button class="float-btn" onclick="toggleLangMenu()">🌐</button>
+            <div class="lang-options" id="langOptions">
+                <button class="lang-option" data-lang="en">English</button>
+                <button class="lang-option" data-lang="zh">中文</button>
+                <button class="lang-option" data-lang="ja">日本語</button>
+            </div>
+        </div>
+        <button class="float-btn" onclick="toggleTheme()">🌓</button>
+        <button class="float-btn">📧</button>
+    </div>
+
+    <script>
+        // 多语言支持
+        const translations = {
+            en: {
+                nav_title: "Fanwork Submission",
+                theme_title: "Theme",
+                theme_content: "Theme: Fantasy World Adventure",
+                theme_format: "Formats: Novel/Illustration/Manga/Short Story",
+                theme_deadline: "Deadline: December 31, 2023",
+                guidelines_title: "Guidelines",
+                guideline1: "Original unpublished works only",
+                guideline2: "Content must comply with laws and regulations",
+                guideline3: "Suggested word count: 5,000-20,000 words",
+                guideline4: "Image resolution ≥300dpi",
+                contact_title: "Contact",
+                contact_text: "Submission email:"
+            },
+            zh: {
+                nav_title: "同人作品征集",
+                theme_title: "征集主题",
+                theme_content: "本次征集主题：幻想世界大冒险",
+                theme_format: "作品形式：小说/插画/漫画/短篇故事",
+                theme_deadline: "截止日期：2023年12月31日",
+                guidelines_title: "投稿要求",
+                guideline1: "原创作品，未在其他平台发表",
+                guideline2: "内容积极健康，符合法律法规",
+                guideline3: "小说字数建议在5千-2万字之间",
+                guideline4: "图片作品分辨率不低于300dpi",
+                contact_title: "投稿方式",
+                contact_text: "投稿邮箱："
+            },
+            ja: {
+                nav_title: "同人作品募集",
+                theme_title: "募集テーマ",
+                theme_content: "テーマ：異世界ファンタジー",
+                theme_format: "形式：小説/イラスト/漫画",
+                theme_deadline: "締切：2023年12月31日",
+                guidelines_title: "投稿要項",
+                guideline1: "オリジナル未発表作品に限る",
+                guideline2: "法令遵守の適切な内容",
+                guideline3: "小説は5千～2万字程度",
+                guideline4: "画像解像度300dpi以上",
+                contact_title: "連絡先",
+                contact_text: "作品の送付先："
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLangMenu() {
+            document.getElementById('langOptions').classList.toggle('show');
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.dataset.translate;
+                element.textContent = translations[lang][key];
+            });
+            document.getElementById('langOptions').classList.remove('show');
+        }
+
+        document.querySelectorAll('.lang-option').forEach(btn => {
+            btn.addEventListener('click', () => changeLanguage(btn.dataset.lang));
+        });
+
+        // 主题切换
+        function toggleTheme() {
+            const currentTheme = document.body.dataset.theme;
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.dataset.theme = newTheme;
+        }
+
+        // 关闭语言菜单
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.lang-menu')) {
+                document.getElementById('langOptions').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
